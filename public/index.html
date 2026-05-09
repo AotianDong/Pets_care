@@ -488,7 +488,7 @@
                 <input type="tel" placeholder="联系电话" required>
                 <input type="text" placeholder="宠物名称" required>
                 <input type="text" placeholder="宠物种类/年龄" required>
-                <input type="datetime-local" id="bookingTime" placeholder="预期到店时间" required>
+                <input type="datetime-local" id="bookingTime" placeholder="预约到店时间" required>
                 <textarea placeholder="简述宠物情况和需求..." required></textarea>
                 <button type="submit" class="btn">提交预约</button>
             </form>
@@ -628,18 +628,21 @@
         const heroForm = document.getElementById('heroBookingForm');
         const bookingTimeInput = document.getElementById('bookingTime');
         
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const year = tomorrow.getFullYear();
-        const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
-        const day = String(tomorrow.getDate()).padStart(2, '0');
-        bookingTimeInput.value = `${year}-${month}-${day}T09:00`;
+        bookingTimeInput.addEventListener('click', function() {
+            if (!this.value) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const year = tomorrow.getFullYear();
+                const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+                const day = String(tomorrow.getDate()).padStart(2, '0');
+                this.value = `${year}-${month}-${day}T09:00`;
+            }
+        });
         
         heroForm.addEventListener('submit', function(e) {
             e.preventDefault();
             alert('预约提交成功！我们会尽快与您联系。');
             heroForm.reset();
-            bookingTimeInput.value = `${year}-${month}-${day}T09:00`;
         });
 
         let currentSlide = 0;
