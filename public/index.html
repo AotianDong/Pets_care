@@ -702,9 +702,21 @@
             width: 90px;
             height: 90px;
             border-radius: 50%;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             border: 3px solid rgba(255,255,255,0.4);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .testimonial-card .rating {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card .star {
+            font-size: 1.2rem;
+            color: #ffd700;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
         .testimonial-card p {
@@ -730,7 +742,9 @@
 
         .contact .container {
             display: flex;
+            gap: 3rem;
             justify-content: center;
+            align-items: stretch;
         }
 
         .contact-info {
@@ -741,6 +755,22 @@
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
             min-width: 400px;
             max-width: 500px;
+            flex-shrink: 0;
+        }
+
+        .contact-map {
+            min-width: 400px;
+            max-width: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            flex-shrink: 0;
+        }
+
+        .contact-map img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .contact-info h3 {
@@ -951,16 +981,37 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=young%20asian%20woman%20portrait%20professional%20smile%20white%20background&image_size=square" alt="客户">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
                     <p>"我家狗狗后腿受伤后在这里接受康复治疗，治疗师非常专业耐心，狗狗恢复得很好！"</p>
                     <div class="name">王女士</div>
                 </div>
                 <div class="testimonial-card">
                     <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=asian%20man%20portrait%20professional%20business%20smile%20white%20background&image_size=square" alt="客户">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
                     <p>"环境很好，设备先进，工作人员都很有爱心。猫咪做完手术后来这里康复，效果超出预期。"</p>
                     <div class="name">李先生</div>
                 </div>
                 <div class="testimonial-card">
                     <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=young%20asian%20woman%20portrait%20cheerful%20smile%20white%20background&image_size=square" alt="客户">
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
                     <p>"水疗项目太棒了！我家老狗现在又能跑能跳了，感谢宠爱康复中心的专业治疗！"</p>
                     <div class="name">张女士</div>
                 </div>
@@ -985,8 +1036,8 @@
             <div class="contact-info">
                 <h3>联系我们</h3>
                 <div>
-                    <i>📍</i> 地址：北京市朝阳区宠物健康路88号
-                </div>
+                        <i>📍</i> 地址：北京市东三环中路中国国际贸易中心-2座
+                    </div>
                 <div>
                     <i>📞</i> 电话：400-888-8888
                 </div>
@@ -996,6 +1047,9 @@
                 <div>
                     <i>✉️</i> 邮箱：service@petsrehab.com
                 </div>
+            </div>
+            <div class="contact-map">
+                <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=clean%20simple%20city%20map%20of%20Beijing%20CBD%20area%20showing%20China%20World%20Trade%20Center%20buildings%20streets%20intersection%20marked%20with%20cute%20colorful%20paw%20print%20marker%20pastel%20color%20scheme%20purple%20pink%20yellow%20modern%20minimalist%20style&image_size=landscape_4_3" alt="门店位置地图">
             </div>
         </div>
     </section>
