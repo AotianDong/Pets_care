@@ -69,26 +69,67 @@
             background-size: cover;
             background-position: center;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-items: center;
             align-items: center;
-            text-align: center;
             color: white;
-            padding-top: 60px;
+            padding: 60px 2rem 2rem;
         }
 
-        .hero h1 {
+        .hero-content {
+            text-align: center;
+        }
+
+        .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .hero p {
+        .hero-content p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            max-width: 800px;
+            max-width: 600px;
             opacity: 0.9;
+        }
+
+        .hero-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+        }
+
+        .hero-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .hero-form input,
+        .hero-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .hero-form input::placeholder,
+        .hero-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-form textarea {
+            height: 100px;
+            resize: vertical;
         }
 
         .btn {
@@ -303,9 +344,8 @@
         }
 
         .contact {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            display: flex;
+            justify-content: center;
         }
 
         .contact-info {
@@ -329,27 +369,7 @@
             font-size: 1.2rem;
         }
 
-        .contact-form {
-            background: #f8f9fa;
-            padding: 2.5rem;
-            border-radius: 15px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
+        
 
         footer {
             background: #333;
@@ -405,9 +425,22 @@
     </nav>
 
     <section class="hero">
-        <h1>专业宠物康复护理</h1>
-        <p>为您的宠物提供全方位的康复治疗服务，让爱宠重新焕发活力</p>
-        <a href="#contact" class="btn">立即预约</a>
+        <div class="hero-content">
+            <h1>专业宠物康复护理</h1>
+            <p>为您的宠物提供全方位的康复治疗服务，让爱宠重新焕发活力</p>
+            <a href="#services" class="btn">了解服务</a>
+        </div>
+        <div class="hero-form">
+            <h3>在线预约</h3>
+            <form id="heroBookingForm">
+                <input type="text" placeholder="您的姓名" required>
+                <input type="tel" placeholder="联系电话" required>
+                <input type="text" placeholder="宠物名称" required>
+                <input type="text" placeholder="宠物种类/年龄" required>
+                <textarea placeholder="简述宠物情况和需求..." required></textarea>
+                <button type="submit" class="btn">提交预约</button>
+            </form>
+        </div>
     </section>
 
     <section id="services" class="services">
@@ -522,17 +555,6 @@
                     <i>✉️</i> 邮箱：service@petsrehab.com
                 </div>
             </div>
-            <div class="contact-form">
-                <h3>在线预约</h3>
-                <form>
-                    <input type="text" placeholder="您的姓名" required>
-                    <input type="tel" placeholder="联系电话" required>
-                    <input type="text" placeholder="宠物名称" required>
-                    <input type="text" placeholder="宠物种类/年龄" required>
-                    <textarea placeholder="简述宠物情况和需求..." required></textarea>
-                    <button type="submit" class="btn">提交预约</button>
-                </form>
-            </div>
         </div>
     </section>
 
@@ -551,11 +573,11 @@
             });
         });
 
-        const form = document.querySelector('.contact-form form');
-        form.addEventListener('submit', function(e) {
+        const heroForm = document.getElementById('heroBookingForm');
+        heroForm.addEventListener('submit', function(e) {
             e.preventDefault();
             alert('预约提交成功！我们会尽快与您联系。');
-            form.reset();
+            heroForm.reset();
         });
 
         let currentSlide = 0;
