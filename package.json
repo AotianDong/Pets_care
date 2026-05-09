@@ -1,0 +1,16 @@
+{
+  "name": "pets-care-rehabilitation-center",
+  "version": "1.0.0",
+  "description": "宠爱康复中心官网 - 宠物康复治疗服务",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["pet", "rehabilitation", "veterinary"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
