@@ -558,43 +558,6 @@
             margin-bottom: 1rem;
         }
 
-        .carousel-indicators {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 2;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-        }
-
-        .indicator {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .indicator:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: scale(1.1);
-        }
-
-        .indicator.active {
-            background: white;
-            transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-            border-color: white;
-        }
-
         .carousel-btn {
             position: absolute;
             top: 50%;
@@ -890,14 +853,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-indicators" id="indicators">
-                <span class="indicator active" onclick="goToSlide(0)"></span>
-                <span class="indicator" onclick="goToSlide(1)"></span>
-                <span class="indicator" onclick="goToSlide(2)"></span>
-                <span class="indicator" onclick="goToSlide(3)"></span>
-                <span class="indicator" onclick="goToSlide(4)"></span>
-                <span class="indicator" onclick="goToSlide(5)"></span>
-            </div>
+
         </div>
     </section>
 
@@ -1092,9 +1048,6 @@
         function updateSlide() {
             const carousel = document.getElementById('servicesCarousel');
             carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
         }
 
         function nextSlide() {
@@ -1112,7 +1065,7 @@
             updateSlide();
         }
 
-        setInterval(nextSlide, 5000);
+        setInterval(nextSlide, 3000);
     </script>
 </body>
 </html>
