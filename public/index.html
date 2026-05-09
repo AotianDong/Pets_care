@@ -127,12 +127,309 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        #bookingTime {
-            min-height: 48px;
+        .time-input-wrapper {
+            position: relative;
         }
 
-        #bookingTime:invalid:not(:focus) {
+        #bookingTime {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            min-height: 48px;
+            line-height: 28px;
+            display: flex;
+            align-items: center;
+            appearance: none;
+        }
+
+        #bookingTime::-webkit-calendar-picker-indicator {
+            display: none;
+        }
+
+        #bookingTime:invalid {
+            color: transparent;
+        }
+
+        .time-placeholder {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
             color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            transition: all 0.2s;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        #bookingTime:focus + .time-placeholder,
+        #bookingTime:not(:invalid) + .time-placeholder {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #bookingTime:not(:invalid) {
+            color: white;
+        }
+
+        .calendar-btn {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .calendar-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .calendar-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .booking-time-display {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            min-height: 48px;
+            line-height: 28px;
+            display: flex;
+            align-items: center;
+        }
+
+        .booking-time-display::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .date-time-picker {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .date-time-picker.show {
+            display: flex;
+        }
+
+        .picker-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .picker-content {
+            position: relative;
+            width: 90%;
+            max-width: 360px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: pickerSlideIn 0.3s ease-out;
+        }
+
+        @keyframes pickerSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .picker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .picker-nav-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .picker-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .picker-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .picker-days {
+            padding: 1rem;
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .day-btn {
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .day-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .day-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .day-btn.today {
+            border: 2px solid white;
+        }
+
+        .day-btn.other-month {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .day-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .picker-time {
+            padding: 1rem 1rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .time-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .time-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .time-selector select {
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .time-selector select option {
+            background: #667eea;
+            color: white;
+        }
+
+        .picker-footer {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .picker-btn {
+            flex: 1;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cancel-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .cancel-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .confirm-btn {
+            background: white;
+            color: #667eea;
+        }
+
+        .confirm-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .hero-form textarea {
@@ -496,7 +793,48 @@
                 <input type="tel" placeholder="联系电话" required>
                 <input type="text" placeholder="宠物名称" required>
                 <input type="text" placeholder="宠物种类/年龄" required>
-                <input type="datetime-local" id="bookingTime" placeholder="预约到店时间" required>
+                <div class="time-input-wrapper">
+                    <input type="text" id="bookingTimeDisplay" readonly placeholder="预约到店时间" class="booking-time-display">
+                    <input type="hidden" id="bookingTime" required>
+                    <button type="button" class="calendar-btn" onclick="openDateTimePicker()">📅</button>
+                </div>
+                <div id="dateTimePicker" class="date-time-picker">
+                    <div class="picker-overlay" onclick="closeDateTimePicker()"></div>
+                    <div class="picker-content">
+                        <div class="picker-header">
+                            <button type="button" class="picker-nav-btn" onclick="changeMonth(-1)">‹</button>
+                            <span class="picker-title" id="pickerTitle"></span>
+                            <button type="button" class="picker-nav-btn" onclick="changeMonth(1)">›</button>
+                        </div>
+                        <div class="picker-days">
+                            <div class="weekdays">日一三四五六</div>
+                            <div class="days-grid" id="daysGrid"></div>
+                        </div>
+                        <div class="picker-time">
+                            <div class="time-label">选择时间</div>
+                            <div class="time-selector">
+                                <select id="hourSelect">
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                </select>
+                                <span>:</span>
+                                <select id="minuteSelect">
+                                    <option value="00">00</option>
+                                    <option value="30">30</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="picker-footer">
+                            <button type="button" class="picker-btn cancel-btn" onclick="closeDateTimePicker()">取消</button>
+                            <button type="button" class="picker-btn confirm-btn" onclick="confirmDateTime()">确认</button>
+                        </div>
+                    </div>
+                </div>
                 <textarea placeholder="简述宠物情况和需求..." required></textarea>
                 <button type="submit" class="btn">提交预约</button>
             </form>
@@ -635,22 +973,116 @@
 
         const heroForm = document.getElementById('heroBookingForm');
         const bookingTimeInput = document.getElementById('bookingTime');
+        const bookingTimeDisplay = document.getElementById('bookingTimeDisplay');
+        const dateTimePicker = document.getElementById('dateTimePicker');
+        const pickerTitle = document.getElementById('pickerTitle');
+        const daysGrid = document.getElementById('daysGrid');
+        const hourSelect = document.getElementById('hourSelect');
+        const minuteSelect = document.getElementById('minuteSelect');
         
-        bookingTimeInput.addEventListener('click', function() {
-            if (!this.value) {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                const year = tomorrow.getFullYear();
-                const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
-                const day = String(tomorrow.getDate()).padStart(2, '0');
-                this.value = `${year}-${month}-${day}T09:00`;
+        let currentDate = new Date();
+        let selectedDate = null;
+        
+        function setDefaultTime() {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const year = tomorrow.getFullYear();
+            const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+            const day = String(tomorrow.getDate()).padStart(2, '0');
+            selectedDate = tomorrow;
+            bookingTimeInput.value = `${year}-${month}-${day}T09:00`;
+            bookingTimeDisplay.value = `${year}-${month}-${day} 09:00`;
+            hourSelect.value = '09';
+            minuteSelect.value = '00';
+        }
+        
+        function openDateTimePicker() {
+            if (!selectedDate) {
+                setDefaultTime();
             }
-        });
+            currentDate = selectedDate || new Date();
+            renderCalendar();
+            dateTimePicker.classList.add('show');
+        }
+        
+        function closeDateTimePicker() {
+            dateTimePicker.classList.remove('show');
+        }
+        
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            renderCalendar();
+        }
+        
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            pickerTitle.textContent = `${year}年${month + 1}月`;
+            
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startDay = firstDay.getDay();
+            
+            const prevMonthLastDay = new Date(year, month, 0).getDate();
+            
+            let html = '';
+            
+            for (let i = startDay - 1; i >= 0; i--) {
+                html += `<button type="button" class="day-btn other-month" onclick="selectDate(${year}, ${month - 1}, ${prevMonthLastDay - i})">${prevMonthLastDay - i}</button>`;
+            }
+            
+            const today = new Date();
+            const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            
+            for (let i = 1; i <= lastDay.getDate(); i++) {
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+                const isToday = dateStr === todayStr;
+                const isSelected = selectedDate && `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}` === dateStr;
+                const isPast = new Date(year, month, i) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                
+                let classes = 'day-btn';
+                if (isToday) classes += ' today';
+                if (isSelected) classes += ' active';
+                if (isPast) classes += ' disabled';
+                
+                html += `<button type="button" class="${classes}" onclick="${isPast ? '' : `selectDate(${year}, ${month}, ${i})`}">${i}</button>`;
+            }
+            
+            const remainingDays = 42 - html.split('</button>').length;
+            for (let i = 1; i <= remainingDays; i++) {
+                html += `<button type="button" class="day-btn other-month" onclick="selectDate(${year}, ${month + 1}, ${i})">${i}</button>`;
+            }
+            
+            daysGrid.innerHTML = html;
+        }
+        
+        function selectDate(year, month, day) {
+            selectedDate = new Date(year, month, day);
+            renderCalendar();
+        }
+        
+        function confirmDateTime() {
+            if (!selectedDate) return;
+            
+            const year = selectedDate.getFullYear();
+            const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+            const day = String(selectedDate.getDate()).padStart(2, '0');
+            const hour = hourSelect.value;
+            const minute = minuteSelect.value;
+            
+            bookingTimeInput.value = `${year}-${month}-${day}T${hour}:${minute}`;
+            bookingTimeDisplay.value = `${year}-${month}-${day} ${hour}:${minute}`;
+            closeDateTimePicker();
+        }
         
         heroForm.addEventListener('submit', function(e) {
             e.preventDefault();
             alert('预约提交成功！我们会尽快与您联系。');
             heroForm.reset();
+            bookingTimeDisplay.value = '';
+            bookingTimeInput.value = '';
+            selectedDate = null;
         });
 
         let currentSlide = 0;
